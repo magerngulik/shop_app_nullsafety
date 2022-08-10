@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => Products(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'SHOP APP NULL SEFETY',
         home: ProductOverviewScreen(),
         routes: {

@@ -14,7 +14,7 @@ class CardItem {
       required this.price});
 }
 
-class Card extends ChangeNotifier {
+class Cart extends ChangeNotifier {
   Map<String, CardItem> _items = {};
   Map<String, CardItem> get item {
     return {..._items};

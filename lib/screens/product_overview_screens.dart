@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../providers/product.dart';
 import '../providers/products_provider.dart';
@@ -20,34 +21,28 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
     // final productContainer = Provider.of<Products>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          PopupMenuButton(
-              onSelected: (FilterOptions selectedValue) {
-                setState(() {
-                  if (selectedValue == FilterOptions.Favorites) {
-                    _showOnlyFavorites = true;
-                  } else {
-                    _showOnlyFavorites = false;
-                  }
-                });
-              },
-              icon: Icon(Icons.more_vert),
-              itemBuilder: (_) => [
-                    const PopupMenuItem(
-                      child: Text(
-                        'Only Favorites',
-                      ),
-                      value: FilterOptions.Favorites,
-                    ),
-                    const PopupMenuItem(
-                      child: Text('Show All'),
-                      value: FilterOptions.All,
-                    ),
-                  ])
-        ],
-        title: Text('Product Overview Screen'),
-      ),
+      appBar: AppBar(actions: [
+        PopupMenuButton(
+            onSelected: (FilterOptions selectedValue) {
+              setState(() {
+                if (selectedValue == FilterOptions.Favorites) {
+                  _showOnlyFavorites = true;
+                } else {
+                  _showOnlyFavorites = false;
+                }
+              });
+            },
+            itemBuilder: (_) => [
+                  PopupMenuItem(
+                    child: Text('Favorites Only'),
+                    value: FilterOptions.Favorites,
+                  ),
+                  PopupMenuItem(
+                    child: Text('Show All'),
+                    value: FilterOptions.All,
+                  )
+                ])
+      ]),
       body: ProductGrid(showOnlyFavorites: _showOnlyFavorites),
     );
   }
